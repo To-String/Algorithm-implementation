@@ -17,7 +17,7 @@ void swapElem(int *const a, int *const b) //用指针传递，说明该函数只能修改值，不
 }
 void bubbleSort(int *const arr, const int length)
 {
-	assert< length > 0>;
+	assert( length > 0);
 	int count = 1;		   //设置一个计数，看看几趟就能完成排序
 	for (int i = 1; i < length; ++i)
 	{
