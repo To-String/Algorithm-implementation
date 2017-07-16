@@ -17,11 +17,11 @@ int binary_search(int arr[], int array_size, int key)
 											   而且可以防止溢出。*/
 		if (arr[mid] > key)
 		{
-			right = mid - 1;
+			right = mid - 1;   // 赋值给right， 是因为能够把mid右边的数给排除，然后最后一个数字是mid前一个数字
 		}
 		else if (arr[mid] < key)
 		{
-			left = mid + 1;
+			left = mid + 1;  //  赋值给left， 是因为能够把mid左边的数给排除，然后第一个数字是mid的后一个
 		}
 		else
 		{
@@ -60,7 +60,7 @@ int main()
 			cin >> list_Length;
 
 			int *array = new int[list_Length];
-
+			cout << "请输入要查找的元素的序列：" << endl;
 			for (int i = 0; i < list_Length; ++i)
 			{
 				cin >> array[i];
