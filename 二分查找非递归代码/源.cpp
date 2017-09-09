@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 #define TT_ERROR -1
-int binary_search(int arr[], int array_size, int key)
+int binary_search(const int *const arr, const int array_size, const int key)
 {
 	if ((arr == nullptr) || (array_size == 0))
 	{
@@ -19,7 +19,7 @@ int binary_search(int arr[], int array_size, int key)
 		{
 			right = mid - 1;   // 赋值给right， 是因为能够把mid右边的数给排除，然后最后一个数字是mid前一个数字
 		}
-		else if (arr[mid] < key)
+		else if (arr[mid] < key)  
 		{
 			left = mid + 1;  //  赋值给left， 是因为能够把mid左边的数给排除，然后第一个数字是mid的后一个
 		}
@@ -31,6 +31,16 @@ int binary_search(int arr[], int array_size, int key)
 
 	}
 	return TT_ERROR;
+}
+
+void print_Array(const int *const arr, const int count)
+{
+	cout << "\n输出查找前的数据元素：\n";
+	for (int j = 0; j < count; ++j)
+	{
+		cout << arr[j] << " ";
+	}
+	cout << endl;
 }
 
 int main()
@@ -55,17 +65,30 @@ int main()
 		{
 		case 1:
 		{
-			cout << "请输入你想要查找元素列表的长度：";
+			cout << "请输入你想要查找元素列表数组的长度：";
 			int list_Length(0);
 			cin >> list_Length;
-
+			if (cin >> list_Length && list_Length <= 0)
+			{
+				cout << "输入错误，请输入正确的数组个数(至少大于0)，否则无法进行排序,请重新输入！" << endl;
+				continue;
+			}
 			int *array = new int[list_Length];
-			cout << "请输入要查找的元素的序列：" << endl;
+			if (!array)
+			{
+				cout << "错误，分配数组内存时失败，请重新运行程序！" << endl;
+				system("pause");
+				exit(0);
+			}
+
+			cout << "请分别输入你想要进行查找的" << list_Length << "个元素，分别用回车键分开即可：\n";
 			for (int i = 0; i < list_Length; ++i)
 			{
 				cin >> array[i];
 			}
-			;
+			
+			print_Array(array, list_Length);
+
 			int element(0), locate(0);
 			cout << "请输入你想要在数组中查找的元素是：";
 			cin >> element;
