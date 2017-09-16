@@ -17,12 +17,12 @@ void swapElem(int *const a, int *const b) //用指针传递，说明该函数只能修改值，不
 }
 void bubbleSort(int *const arr, const int length)
 {
-	assert( length > 0);
+	assert(length > 0);
 	int count = 1;		   //设置一个计数，看看几趟就能完成排序
-	for (int i = 1; i < length; ++i)
+	for (int i = 0; i < length - 1; ++i)
 	{
-		bool flag = false;
-		for (int j = 0; j < length - i; ++j)
+		bool flag = false;   //设定一个标记，若为false，则表示此次循环没有进行交换，也就是待排序列已经有序，排序已然完成。
+		for (int j = 0; j < length - i - 1; ++j)
 		{
 			if (arr[j] > arr[j + 1])
 			{
@@ -37,6 +37,11 @@ void bubbleSort(int *const arr, const int length)
 		++count;			  //说明这一趟已完成，加1计数
 	}
 	cout << "\n交换完毕,标志冒泡排序花了" << count << "趟就完成了排序！" << endl;
+
+
+
+	/*冒泡排序的时间复杂度是O(N2)。
+假设被排序的数列中有N个数。遍历一趟的时间复杂度是O(N)，需要遍历多少次呢？N-1次！因此，冒泡排序的时间复杂度是O(N2)。*/
 }
 int main()
 {
@@ -63,8 +68,8 @@ int main()
 		{
 			cout << "请输入你想排序数组元素的个数：";
 			int arraySize(0);
-			cin >> arraySize;
-			if (arraySize <= 0)
+			
+			if (cin >> arraySize && arraySize <= 0)
 			{
 				cout << "输入错误，请输入正确的数组个数(至少大于0)，否则无法进行排序！" << endl;
 				system("pause");
